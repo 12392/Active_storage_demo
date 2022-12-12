@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @pin.title %>
+</p>
+    
+<% if @pin.image.attached? %>
+<%= link_to image_tag(@pin.image), pins_path %>
+<% end %>
+
+<% if @pin.clip.attached? %>
+<%= video_tag(url_for(@pin.clip) , style: 'width: 50%; height: 50%',controls: '') %>
+<% end %>
+
+
+
+
+<% if @pin.pictures.attached? %> 
+<% (0...@pin.pictures.count).each do |image| %>
+<%= link_to image_tag(@pin.pictures[image], style: 'width: 50%; height: 50%') , pins_path %>
+<% end %> 
+<% end %>
+
+
+<p>
+  <strong>Caption:</strong>
+  <%= @pin.caption %>
+</p>
+
+<%= link_to 'Edit', edit_pin_path(@pin) %> |
+<%= link_to 'Back', pins_path %>
